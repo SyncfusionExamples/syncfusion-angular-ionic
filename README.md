@@ -154,5 +154,3 @@ Add button component styles as given in the `angular-cli.json` file within the a
 ionic serve 
 ```
 
->Note: For your convenience we have prepared a angular sample with ionic framework that can be downloaded from the following link,
-http://www.syncfusion.com/downloads/support/directtrac/general/ze/angular-6-ionic-1643684709.zip  
