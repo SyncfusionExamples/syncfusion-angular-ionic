@@ -1,21 +1,15 @@
-# ej2-angular-ionic
-Integrating EJ2 Angular components into  ionic framework.
+# Integrating Syncfusion Angular Components with Angular and Ionic Applications
 
-# Getting Started Ionic with Angular
-
-This document helps you to create a simple Angular application with `Ionic Framework` and `Syncfusion Angular UI components`.
+This document helps you to create a simple Angular application with the `Ionic Framework` and including `Syncfusion Angular UI components` can be a great way to add functionality and a polished look to your app.
 
 ## Prerequisites
 
-Before getting started with Syncfusion Angular Components in Ionic with Angular project, check whether the following are installed in the developer machine. 
+* [System requirements for Syncfusion Angular UI components](https://ej2.syncfusion.com/angular/documentation/system-requirement)
+* ionic CLI - `^6.x.x` or later
 
-* Angular Versions supported - 4+
-* Typescript Versions supported - 2.6+
-* ionic CLI 3.9.0+
+N> If the `ionic CLI` is not installed, refer to the [`Getting Started with ionic`](https://ionicframework.com/getting-started/#cli) document to install it.
 
->Note: If the `ionic CLI` is not installed, refer to [`Getting Started with ionic`](https://ionicframework.com/getting-started/#cli) to install it.
-
-## Create an application
+## Create an Application
 
 Create a new project with the following command using the command prompt.
 
@@ -23,134 +17,116 @@ Create a new project with the following command using the command prompt.
 npm install -g ionic
 ```
 
->Note: Here we are using ionic version 4.6.0 to support angular 6 .
-
-Then, run the following command line to create a new Ionic template application. The new application will be placed under ej2-ionic folder after the command complete its process, and it will install the default npm dependent packages when creating the application.
+Once your development environment is set up, you can start by creating a new project using the Ionic CLI. To do this, run the following command in your command prompt,
 
 ```bash
-ionic start ej2-ionic
+ionic start ej2-ionic blank --type=angular 
 ```
+This command will create a new Ionic template application in a folder called "ej2-ionic" and will also install the default npm packages needed for the application.
 
->Note: Also refer the below [getting started](https://ionicframework.com/getting-started/#cli ) to install ionic framework.
+N> Refer to this [getting started](https://ionicframework.com/getting-started/#cli) document to install ionic framework.
 
-## Installing Syncfusion button package
+## Installing Syncfusion Grid package
 
-Syncfusion packages are distributed in npm as `@syncfusion` scoped packages. You can get all the angular syncfusion package from npm [link]( https://www.npmjs.com/search?q=%40syncfusion%2Fej2-angular- ).
+Syncfusion packages are distributed in npm as `@syncfusion` scoped packages. You can get all the Angular syncfusion package from [npm]( https://www.npmjs.com/search?q=%40syncfusion%2Fej2-angular- ).
 
-Add `@syncfusion/ej2-angular-buttons` package to the application.
+Add the `@syncfusion/ej2-angular-grids` package to the application.
 
 ```bash
-npm install @syncfusion/ej2-angular-buttons --save
-(or)
-npm i @syncfusion/ej2-angular-buttons --save
+npm i @syncfusion/ej2-angular-grids --save
 ```
 
-## Adding button module
+## Adding Grid Module
 
-After installing the package, the component modules are available to configure into your application from Syncfusion installed
-package. Syncfusion Angular package provides two different types of ng-Modules.
+After installing the package, the component modules are available to configure your application from Syncfusion installed package.
 
-Refer to [`Ng Module`](https://ej2.syncfusion.com/angular/documentation/common/ng-module.html) to learn about `ngModules`.
-
-Refer to the following code snippet to import the button module in app.module.ts from the `@syncfusion/ej2-angular-buttons`.
+Refer to the following code snippet to import the Grid module in `app/src/home/home.module.ts` from the `@syncfusion/ej2-angular-grids`.
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { HomePage } from './home.page';
+import { GridAllModule } from '@syncfusion/ej2-angular-grids';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { HomePageRoutingModule } from './home-routing.module';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ButtonModule],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HomePageRoutingModule,
+    GridAllModule
   ],
-  bootstrap: [AppComponent]
+  declarations: [HomePage]
 })
-export class AppModule {}
-
+export class HomePageModule {}
 ```
 
 ## Adding Syncfusion component
 
-Add the button component snippet in `app.component.ts` as follows.
+After importing the package, you can start using the Syncfusion UI components. In this example, we're adding a button component to the `src/home/home.page.ts` file.
 
 ```typescript
-import { Component } from "@angular/core";
-
-import { Platform } from "@ionic/angular";
-import { SplashScreen } from "@ionic-native/splash-screen/ngx";
-import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-root",
-  template: `
-    <h1>
-      Hello Angular, Syncfusion Angular UI Button!
-    </h1>
-    <button ejs-button cssClass="”e-primary”">Button</button>
-  `
+  selector: 'app-home',
+  template: `<ejs-grid [dataSource]='data'>
+  <e-columns>
+    <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90></e-column>
+    <e-column field='CustomerID' headerText='Customer ID' width=120></e-column>
+    <e-column field='Freight' headerText='Freight' textAlign='Right' format='C2' width=90></e-column>
+    <e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120></e-column>
+  </e-columns>
+</ejs-grid>`
 })
-export class AppComponent {
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
-    this.initializeApp();
-  }
+export class HomePage {
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
-}
-
-```
-
-## Adding CSS reference
-
-Add button component styles as given in the `angular-cli.json` file within the app -> styles section.
-
->Note: If you are using Angular 6 project, add the changes in `angular.json` file.
-
-```typescript
-
-{
-"apps": [
+  constructor() {}
+  public data: Object[] = [
     {
-         "styles": [
-              {
-                "input": "./node_modules/@syncfusion/ej2-angular-buttons/styles/material.css"
-              },
-              {
-                "input": "src/global.scss"
-              }
-            ]
-     }
-   ]
+      OrderID: 10248, CustomerID: 'VINET', EmployeeID: 5, OrderDate: new Date(8364186e5),
+      ShipName: 'Vins et alcools Chevalier', ShipCity: 'Reims', ShipAddress: '59 rue de l Abbaye',
+      ShipRegion: 'CJ', ShipPostalCode: '51100', ShipCountry: 'France', Freight: 32.38, Verified: !0
+    },
+    {
+      OrderID: 10249, CustomerID: 'TOMSP', EmployeeID: 6, OrderDate: new Date(836505e6),
+      ShipName: 'Toms Spezialitäten', ShipCity: 'Münster', ShipAddress: 'Luisenstr. 48',
+      ShipRegion: 'CJ', ShipPostalCode: '44087', ShipCountry: 'Germany', Freight: 11.61, Verified: !1
+    },
+    {
+      OrderID: 10250, CustomerID: 'HANAR', EmployeeID: 4, OrderDate: new Date(8367642e5),
+      ShipName: 'Hanari Carnes', ShipCity: 'Rio de Janeiro', ShipAddress: 'Rua do Paço, 67',
+      ShipRegion: 'RJ', ShipPostalCode: '05454-876', ShipCountry: 'Brazil', Freight: 65.83, Verified: !0
+    }
+  ];
 }
-
 ```
 
-## Running the application
+## Adding CSS Reference
 
- Finally, run the following command line to start the application. The Syncfusion Essential JS 2 button component will be rendered in the ionic framework. 
+Use the styles for the Grid component, you can import the required dependencies as shown in the following snippet in the `~src/global.scss`,
+
+```css
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-angular-grids/styles/material.css';
+```
+
+## Running the Application
+
+Finally, run the following command line to start the application. The Syncfusion Angular button component will be rendered in the ionic framework. 
 
  ```bash
 ionic serve 
 ```
-
