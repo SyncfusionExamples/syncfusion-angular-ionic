@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import { GridAllModule } from '@syncfusion/ej2-angular-grids';
+import { GridModule } from '@syncfusion/ej2-angular-grids';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -14,7 +14,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    GridAllModule
+    GridModule
   ],
   declarations: [HomePage]
 })
