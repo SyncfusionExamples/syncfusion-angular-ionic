@@ -1,5 +1,5 @@
 {
-  "name": "ej2-ionic",
+  "name": "syncfusion-angular-ionic",
   "integrations": {},
-  "type": "angular"
+  "type": "angular-standalone"
 }
