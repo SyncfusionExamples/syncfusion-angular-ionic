@@ -1,5 +1,7 @@
 {
-  "name": "ej2-ionic",
-  "integrations": {},
+  "name": "syncfusion-angular-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
