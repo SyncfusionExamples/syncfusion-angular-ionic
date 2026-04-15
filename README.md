@@ -123,8 +123,3 @@ Finally, run the following command line to start the application. The Syncfusion
 ionic serve 
 ```
 
-## Run
-
-```bash
-ionic serve
-```
