@@ -1,40 +1,32 @@
 # Integrating Syncfusion Angular Components with Angular and Ionic Applications
 
-This document helps you to create a simple Angular application with the `Ionic Framework` and including `Syncfusion Angular UI components` can be a great way to add functionality and a polished look to your app.
+Repository Description: This repository demonstrates how to add Syncfusion Angular UI components to an Ionic (Angular) application, using the Grid component as an example.
+
+## Project Overview
+
+This project shows the minimal steps to create an Ionic Angular app and integrate Syncfusion Angular components (notably `@syncfusion/ej2-angular-grids`). It includes guidance for prerequisites, package installation, module import, styling, and running a simple data-bound Grid.
+
+## Features
+
+- Ionic + Angular starter setup
+- Add `@syncfusion/ej2-angular-grids` and import `GridAllModule`
+- Example data-bound Grid with sample data
 
 ## Prerequisites
 
-* [System requirements for Syncfusion Angular UI components](https://ej2.syncfusion.com/angular/documentation/system-requirement)
-* ionic CLI - `^6.x.x` or later
+- See Syncfusion system requirements: https://ej2.syncfusion.com/angular/documentation/system-requirement
+- `ionic` CLI `^6.x.x` or later
 
-N> If the `ionic CLI` is not installed, refer to the [`Getting Started with ionic`](https://ionicframework.com/getting-started/#cli) document to install it.
-
-## Create an Application
-
-Create a new project with the following command using the command prompt.
+## Quick Install
 
 ```bash
 npm install -g ionic
-```
-
-Once your development environment is set up, you can start by creating a new project using the Ionic CLI. To do this, run the following command in your command prompt,
-
-```bash
-ionic start ej2-ionic blank --type=angular 
-```
-This command will create a new Ionic template application in a folder called "ej2-ionic" and will also install the default npm packages needed for the application.
-
-N> Refer to this [getting started](https://ionicframework.com/getting-started/#cli) document to install ionic framework.
-
-## Installing Syncfusion Grid package
-
-Syncfusion packages are distributed in npm as `@syncfusion` scoped packages. You can get all the Angular syncfusion package from [npm]( https://www.npmjs.com/search?q=%40syncfusion%2Fej2-angular- ).
-
-Add the `@syncfusion/ej2-angular-grids` package to the application.
-
-```bash
+ionic start ej2-ionic blank --type=angular
+cd ej2-ionic
 npm i @syncfusion/ej2-angular-grids --save
 ```
+
+Import `GridAllModule` into the page module and use `<ejs-grid>` with a `dataSource` as shown in the examples below. Add Syncfusion component styles to `src/global.scss` by importing the package styles and the grid stylesheet.
 
 ## Adding Grid Module
 
@@ -54,56 +46,56 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule,
-    GridAllModule
-  ],
-  declarations: [HomePage]
+	imports: [
+		CommonModule,
+		FormsModule,
+		IonicModule,
+		HomePageRoutingModule,
+		GridAllModule
+	],
+	declarations: [HomePage]
 })
 export class HomePageModule {}
 ```
 
 ## Adding Syncfusion component
 
-After importing the package, you can start using the Syncfusion UI components. In this example, we're adding a button component to the `src/home/home.page.ts` file.
+After importing the package, you can start using the Syncfusion UI components. In this example, we're adding a Grid component to the `src/home/home.page.ts` file.
 
 ```typescript
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  template: `<ejs-grid [dataSource]='data'>
-  <e-columns>
-    <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90></e-column>
-    <e-column field='CustomerID' headerText='Customer ID' width=120></e-column>
-    <e-column field='Freight' headerText='Freight' textAlign='Right' format='C2' width=90></e-column>
-    <e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120></e-column>
-  </e-columns>
+	selector: 'app-home',
+	template: `<ejs-grid [dataSource]='data'>
+	<e-columns>
+		<e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90></e-column>
+		<e-column field='CustomerID' headerText='Customer ID' width=120></e-column>
+		<e-column field='Freight' headerText='Freight' textAlign='Right' format='C2' width=90></e-column>
+		<e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120></e-column>
+	</e-columns>
 </ejs-grid>`
 })
 export class HomePage {
 
-  constructor() {}
-  public data: Object[] = [
-    {
-      OrderID: 10248, CustomerID: 'VINET', EmployeeID: 5, OrderDate: new Date(8364186e5),
-      ShipName: 'Vins et alcools Chevalier', ShipCity: 'Reims', ShipAddress: '59 rue de l Abbaye',
-      ShipRegion: 'CJ', ShipPostalCode: '51100', ShipCountry: 'France', Freight: 32.38, Verified: !0
-    },
-    {
-      OrderID: 10249, CustomerID: 'TOMSP', EmployeeID: 6, OrderDate: new Date(836505e6),
-      ShipName: 'Toms Spezialitäten', ShipCity: 'Münster', ShipAddress: 'Luisenstr. 48',
-      ShipRegion: 'CJ', ShipPostalCode: '44087', ShipCountry: 'Germany', Freight: 11.61, Verified: !1
-    },
-    {
-      OrderID: 10250, CustomerID: 'HANAR', EmployeeID: 4, OrderDate: new Date(8367642e5),
-      ShipName: 'Hanari Carnes', ShipCity: 'Rio de Janeiro', ShipAddress: 'Rua do Paço, 67',
-      ShipRegion: 'RJ', ShipPostalCode: '05454-876', ShipCountry: 'Brazil', Freight: 65.83, Verified: !0
-    }
-  ];
+	constructor() {}
+	public data: Object[] = [
+		{
+			OrderID: 10248, CustomerID: 'VINET', EmployeeID: 5, OrderDate: new Date(8364186e5),
+			ShipName: 'Vins et alcools Chevalier', ShipCity: 'Reims', ShipAddress: '59 rue de l Abbaye',
+			ShipRegion: 'CJ', ShipPostalCode: '51100', ShipCountry: 'France', Freight: 32.38, Verified: !0
+		},
+		{
+			OrderID: 10249, CustomerID: 'TOMSP', EmployeeID: 6, OrderDate: new Date(836505e6),
+			ShipName: 'Toms Spezialitäten', ShipCity: 'Münster', ShipAddress: 'Luisenstr. 48',
+			ShipRegion: 'CJ', ShipPostalCode: '44087', ShipCountry: 'Germany', Freight: 11.61, Verified: !1
+		},
+		{
+			OrderID: 10250, CustomerID: 'HANAR', EmployeeID: 4, OrderDate: new Date(8367642e5),
+			ShipName: 'Hanari Carnes', ShipCity: 'Rio de Janeiro', ShipAddress: 'Rua do Paço, 67',
+			ShipRegion: 'RJ', ShipPostalCode: '05454-876', ShipCountry: 'Brazil', Freight: 65.83, Verified: !0
+		}
+	];
 }
 ```
 
@@ -125,8 +117,14 @@ Use the styles for the Grid component, you can import the required dependencies 
 
 ## Running the Application
 
-Finally, run the following command line to start the application. The Syncfusion Angular button component will be rendered in the ionic framework. 
+Finally, run the following command line to start the application. The Syncfusion Angular Grid component will be rendered in the ionic framework. 
 
  ```bash
 ionic serve 
+```
+
+## Run
+
+```bash
+ionic serve
 ```
