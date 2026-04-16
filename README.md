@@ -1,10 +1,6 @@
 # Integrating Syncfusion Angular Components with Angular and Ionic Applications
 
-Repository Description: This repository demonstrates how to add Syncfusion Angular UI components to an Ionic (Angular) application, using the Grid component as an example.
-
-## Project Overview
-
-This project shows the minimal steps to create an Ionic Angular app and integrate Syncfusion Angular components (notably `@syncfusion/ej2-angular-grids`). It includes guidance for prerequisites, package installation, module import, styling, and running a simple data-bound Grid.
+This project shows the minimal steps required to create an Ionic Angular application and integrate Syncfusion Angular UI components, particularly the @syncfusion/ej2-angular-grids package. It provides clear guidance on setting up prerequisites, installing required packages, importing Angular modules, applying component styles, and rendering a simple data‑bound Grid within an Ionic page.
 
 ## Features
 
@@ -19,139 +15,22 @@ This project shows the minimal steps to create an Ionic Angular app and integrat
 
 ## Quick Install
 
+First, make sure the Ionic CLI is installed globally:
+
 ```bash
 npm install -g ionic
+```
+
+If the Ionic application is not already created, create a new Ionic Angular application using the following commands:
+
+```bash
 ionic start ej2-ionic blank --type=angular
 cd ej2-ionic
+```
+Once the Ionic project is ready, install the Syncfusion Angular Grid package:
+
+```bash
 npm i @syncfusion/ej2-angular-grids --save
-```
-
-Import `GridAllModule` into the page module and use `<ejs-grid>` with a `dataSource` as shown in the examples below. Add Syncfusion component styles to `src/global.scss` by importing the package styles and the grid stylesheet.
-
-## Adding Grid Module
-
-After installing the package, the component modules are available to configure your application from Syncfusion installed package.
-
-Refer to the following code snippet to import the Grid module in `app/src/home/home.module.ts` from the `@syncfusion/ej2-angular-grids`.
-
-```typescript
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
-import { GridAllModule } from '@syncfusion/ej2-angular-grids';
-
-import { HomePageRoutingModule } from './home-routing.module';
-
-
-@NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		IonicModule,
-		HomePageRoutingModule,
-		GridAllModule,
-		HomePage
-	],
-})
-export class HomePageModule {}
-```
-
-## Adding Syncfusion component
-
-After importing the package, you can start using the Syncfusion UI components. In this example, we're adding a Grid component to the `src/home/home.page.ts` file.
-
-```typescript
-import { Component } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { GridModule } from '@syncfusion/ej2-angular-grids';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [IonicModule, GridModule, CommonModule],
-  template: `
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Syncfusion Angular 19 Grid with Ionic</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ejs-grid [dataSource]="data">
-        <e-columns>
-          <e-column field="OrderID" headerText="Order ID" textAlign="Right" width=90></e-column>
-          <e-column field="CustomerID" headerText="Customer ID" width=120></e-column>
-          <e-column field="Freight" headerText="Freight" textAlign="Right" format="C2" width=90></e-column>
-          <e-column field="OrderDate" headerText="Order Date" textAlign="Right" format="yMd" width=120></e-column>
-        </e-columns>
-      </ejs-grid>
-    </ion-content>
-  `
-})
-export class HomePage {
-  public data: Object[] = [
-    {
-      OrderID: 10248,
-      CustomerID: 'VINET',
-      EmployeeID: 5,
-      OrderDate: new Date(8364186e5),
-      ShipName: 'Vins et alcools Chevalier',
-      ShipCity: 'Reims',
-      ShipAddress: '59 rue de l Abbaye',
-      ShipRegion: 'CJ',
-      ShipPostalCode: '51100',
-      ShipCountry: 'France',
-      Freight: 32.38,
-      Verified: true
-    },
-    {
-      OrderID: 10249,
-      CustomerID: 'TOMSP',
-      EmployeeID: 6,
-      OrderDate: new Date(836505e6),
-      ShipName: 'Toms Spezialitäten',
-      ShipCity: 'Münster',
-      ShipAddress: 'Luisenstr. 48',
-      ShipRegion: 'CJ',
-      ShipPostalCode: '44087',
-      ShipCountry: 'Germany',
-      Freight: 11.61,
-      Verified: false
-    },
-    {
-      OrderID: 10250,
-      CustomerID: 'HANAR',
-      EmployeeID: 4,
-      OrderDate: new Date(8367642e5),
-      ShipName: 'Hanari Carnes',
-      ShipCity: 'Rio de Janeiro',
-      ShipAddress: 'Rua do Paço, 67',
-      ShipRegion: 'RJ',
-      ShipPostalCode: '05454-876',
-      ShipCountry: 'Brazil',
-      Freight: 65.83,
-      Verified: true
-    }
-  ];
-}
-```
-
-## Adding CSS Reference
-
-Use the styles for the Grid component, you can import the required dependencies as shown in the following snippet in the `~src/global.scss`,
-
-```css
-@import '../node_modules/@syncfusion/ej2-base/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-buttons/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-calendars/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-inputs/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-navigations/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-popups/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material3.css';
-@import '../node_modules/@syncfusion/ej2-angular-grids/styles/material3.css';
 ```
 
 ## Running the Application
@@ -161,4 +40,3 @@ Finally, run the following command line to start the application. The Syncfusion
  ```bash
 ionic serve 
 ```
-
